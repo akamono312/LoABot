@@ -31,7 +31,7 @@ async def ping(ctx):
 @bot.command(aliases=["ㅂㅂㄱ", "분배금"])
 async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
     fair = auctioncalc(int(price))
-    embed=discord.Embed(title="경매 입찰 적정가 계산기", description=f"[:coin:`{price}`]")
+    embed=discord.Embed(title=":moneybag: 경매 입찰 적정가 계산기", description=f"[:coin:`{price}`]")
     embed.add_field(name="손익분기점", value=f"4인: [:coin:`{fair[0]}`]\n8인: [:coin:`{fair[1]}`]", inline=False)
     embed.add_field(name="적정입찰가", value=f"4인: [:coin:`{math.floor(fair[0]/1.1)}`]\n8인: [:coin:`{math.floor(fair[1]/1.1)}`]", inline=False)
     embed.add_field(name="필보입찰가", value=f"[:coin:`{fair[2]}`]", inline=False)
