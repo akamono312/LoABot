@@ -1,6 +1,11 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import config
+from Ssal.auctioncalculator import *
 import discord
 from discord.ext import commands
+import math
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -23,9 +28,15 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'pong! {round(round(bot.latency, 4)*1000)}ms') # 봇의 핑을 pong! 이라는 메세지와 함께 전송한다. latency는 일정 시간마다 측정됨에 따라 정확하지 않을 수 있다.
 
-@bot.command(name="1234")
-async def _1234(ctx):
-    await ctx.send("5678")
-#파이썬 문법에 따라 함수를 만들 때에는 첫글자에는 숫자를 넣을 수 없는데, 숫자를 사용하고싶다면 함수 이름 자리는 다른 아무것으로 대체하고 괄호 안에 name=""을 사용하여 명령어를 제작할 수 있다.
+@bot.command(aliases=["ㅂㅂㄱ", "분배금"])
+async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
+    fair = auctioncalc(int(price))
+    embed=discord.Embed(title="경매 입찰 적정가 계산기", description=f"[:coin:`{price}`]")
+    embed.add_field(name="손익분기점", value=f"4인: [:coin:`{fair[0]}`]\n8인: [:coin:`{fair[1]}`]", inline=False)
+    embed.add_field(name="적정입찰가", value=f"4인: [:coin:`{math.floor(fair[0]/1.1)}`]\n8인: [:coin:`{math.floor(fair[1]/1.1)}`]", inline=False)
+    embed.add_field(name="필보입찰가", value=f"[:coin:`{fair[2]}`]", inline=False)
+    embed.set_footer(text="Made by 우사니#3136")
+    await ctx.send(embed=embed)
+
 
 bot.run(config.token)
