@@ -129,4 +129,6 @@ dmypy.json
 .pyre/
 
 # config file
-config.py
+token.py
+
+test*
