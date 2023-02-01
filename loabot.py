@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-import config
+import tokens
 from Ssal.auctioncalculator import *
 import discord
 from discord.ext import commands
@@ -39,4 +39,4 @@ async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
     await ctx.send(embed=embed)
 
 
-bot.run(config.token)
+bot.run(tokens.token)
