@@ -1,0 +1,13 @@
+{
+    "ItemLevelMin": 0,
+    "ItemLevelMax": 1700,
+    "ItemGradeQuality": 0,
+    "Sort": "BUY_PRICE",
+    "CategoryCode": 210000,
+    "CharacterClass": "",
+    "ItemTier": 3,
+    "ItemGrade": "",
+    "ItemName": "",
+    "PageNo": 1,
+    "SortCondition": "ASC"
+}
