@@ -40,12 +40,13 @@ def legendaryMap():
     명파주머니(대) 8개 honor shard pouch
     3티어 1레벨 보석 40개
     '''
-    gemprice = get_gemprice()
+    gemprice = get_gem_price()
     solarprice = get_solar_price()
-    print(gemprice, solarprice)
+    honorprice = get_honor_price()
+    print(gemprice, solarprice, honorprice)
     
 
-def get_gemprice():
+def get_gem_price():
     url = apiurl + "auctions/items/"
     headers = {'accept': 'application/json', 'authorization': 'bearer ' + key, 'Content-Type': 'application/json'} 
     with open("search_gem.json", encoding='utf-8') as f:
@@ -67,7 +68,7 @@ def get_gemprice():
         sum = math.floor(sum/2)
         
         # print(sum)
-        return sum * 40
+        return sum
 
     except Exception as e:
         print(e)
@@ -85,9 +86,22 @@ def get_solar_price():
         for i in response['Items']:
             solar[i['Name']] = i['CurrentMinPrice']
 
-        sum = solar['태양의 은총'] * 12 + solar['태양의 축복'] * 8 + solar['태양의 가호'] * 4
         # print(sum)
-        return sum        
+        return solar       
+
+    except Exception as e:
+        print(e)
+
+def get_honor_price():
+    url = apiurl + 'markets/items/'
+    with open("search_honor.json", encoding='utf-8') as f:
+        data = json.load(f)
+    headers = {'accept': 'application/json', 'authorization': 'bearer ' + key, 'Content-Type': 'application/json'}
+
+    try:
+        response = requests.post(url, json=data, headers=headers).json()
+        # print(response)
+        return response['Items'][0]['CurrentMinPrice']
 
     except Exception as e:
         print(e)
