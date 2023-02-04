@@ -15,6 +15,8 @@ key = tokens.apikey
 16인 레이드 추가될 시 주석 해제
 '''
 def auctioncalc(common_price: int):
+    if common_price >= 100000:
+        common_price *= 0.95
     price = []
     fair4 = math.floor(common_price * 0.95 * 3/4)
     fair8 = math.floor(common_price * 0.95 * 7/8)
