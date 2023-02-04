@@ -28,7 +28,7 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'pong! {round(round(bot.latency, 4)*1000)}ms') # 봇의 핑을 pong! 이라는 메세지와 함께 전송한다. latency는 일정 시간마다 측정됨에 따라 정확하지 않을 수 있다.
 
-@bot.command(aliases=["ㅂㅂㄱ", "분배금"])
+@bot.command(aliases=["ㅂㅂㄱ", "분배금", "qnsqorma"])
 async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
     embed = auctioncalc(int(price))
     await ctx.send(embed=embed)
