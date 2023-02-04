@@ -16,12 +16,12 @@ key = tokens.apikey
 '''
 def auctioncalc(common_price: int):
     if common_price >= 100000:
-        common_price *= 0.95
+        common_price = int(common_price * 0.95)
     price = []
     fair4 = math.floor(common_price * 0.95 * 3/4)
     fair8 = math.floor(common_price * 0.95 * 7/8)
     # fair16 = math.floor(common_price * 0.95 * 3/4)
-    fairfield = math.floor(common_price * 0.95 * 10/11)
+    fairfield = math.floor(common_price * 0.95 * 29/30)
 
     price.append(fair4)
     price.append(fair8)
