@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-import token
+import tokens
 from Ssal.auctioncalculator import *
 import discord
 from discord.ext import commands
@@ -33,5 +33,10 @@ async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
     embed = auctioncalc(int(price))
     await ctx.send(embed=embed)
 
+@bot.command(aliases=["지도", "전설지도"])
+async def wleh(ctx):  # 지도의 영어 타자
+    embed = legendaryMap()
+    await ctx.send(embed=embed)
 
-bot.run(token.token)
+
+bot.run(tokens.token)
