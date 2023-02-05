@@ -28,14 +28,14 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'pong! {round(round(bot.latency, 4)*1000)}ms') # 봇의 핑을 pong! 이라는 메세지와 함께 전송한다. latency는 일정 시간마다 측정됨에 따라 정확하지 않을 수 있다.
 
-@bot.command(aliases=["ㅂㅂㄱ", "분배금"])
+@bot.command(aliases=["ㅂㅂㄱ", "분배금", "qnsqorma"])
 async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
-    fair = auctioncalc(int(price))
-    embed=discord.Embed(title="경매 입찰 적정가 계산기", description=f"[:coin:`{price}`]")
-    embed.add_field(name="손익분기점", value=f"4인: [:coin:`{fair[0]}`]\n8인: [:coin:`{fair[1]}`]", inline=False)
-    embed.add_field(name="적정입찰가", value=f"4인: [:coin:`{math.floor(fair[0]/1.1)}`]\n8인: [:coin:`{math.floor(fair[1]/1.1)}`]", inline=False)
-    embed.add_field(name="필보입찰가", value=f"[:coin:`{fair[2]}`]", inline=False)
-    embed.set_footer(text="Made by 우사니#3136")
+    embed = auctioncalc(int(price))
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=["지도", "전설지도", "we", "ㅈㄷ"])
+async def wleh(ctx):  # 지도의 영어 타자
+    embed = legendaryMap()
     await ctx.send(embed=embed)
 
 
