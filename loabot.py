@@ -33,7 +33,7 @@ async def qqr(ctx, price):  # ㅂㅂㄱ의 영어 타자
     embed = auctioncalc(int(price))
     await ctx.send(embed=embed)
 
-@bot.command(aliases=["지도", "전설지도"])
+@bot.command(aliases=["지도", "전설지도", "we", "ㅈㄷ"])
 async def wleh(ctx):  # 지도의 영어 타자
     embed = legendaryMap()
     await ctx.send(embed=embed)
