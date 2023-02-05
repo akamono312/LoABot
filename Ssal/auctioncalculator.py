@@ -134,10 +134,10 @@ def get_gem_price():
 
         index = 0
         sum = 0
-        for i in response['Items']:
+        for item in response['Items']:
             index = index + 1
             if index == 5 or index == 6:
-                sum += i['AuctionInfo']['BuyPrice']
+                sum += item['AuctionInfo']['BuyPrice']
             if index == 6: break
         
         sum = math.floor(sum/2)
@@ -167,8 +167,8 @@ def get_solar_price():
         response = requests.post(url, json=data, headers=headers).json()
         # print(response)
         solar = {}
-        for i in response['Items']:
-            solar[i['Name']] = i['CurrentMinPrice']
+        for item in response['Items']:
+            solar[item['Name']] = item['CurrentMinPrice']
 
         # print(sum)
         return solar       
