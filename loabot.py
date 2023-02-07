@@ -6,6 +6,8 @@ from Ssal.auctioncalculator import *
 import discord
 from discord.ext import commands
 import math
+import requests
+from market.marketAvgPrice import *
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -38,5 +40,10 @@ async def wleh(ctx):  # 지도의 영어 타자
     embed = legendaryMap()
     await ctx.send(embed=embed)
 
+@bot.command(aliases=["경매장","시세"])
+async def market(ctx, *item_name):
+    item_name=' '.join(item_name)
+    embed=market_item(item_name)
+    await ctx.send(embed=embed)
 
 bot.run(tokens.token)
