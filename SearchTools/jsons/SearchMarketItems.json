@@ -1,0 +1,10 @@
+{
+    "Sort": "GRADE",
+    "CategoryCode": 0,
+    "CharacterClass": "string",
+    "ItemTier": 3,
+    "ItemGrade": "string",
+    "ItemName": "string",
+    "PageNo": 1,
+    "SortCondition": "ASC"
+}
