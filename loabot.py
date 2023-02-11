@@ -17,7 +17,8 @@ class MyBot(commands.Bot):
             application_id=1069300492305444954
         )
         self.initial_extension = [
-            "Cogs.Ping"
+            "Cogs.Ping",
+            "Cogs.Ssal"
         ]
 
     
