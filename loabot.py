@@ -8,7 +8,7 @@ from discord.ext import commands
 import math
 import requests
 from market.marketAvgPrice import *
-
+from gamecontents.gameContents import *
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='/', intents=intents)
@@ -45,5 +45,10 @@ async def market(ctx, *item_name):
     item_name=' '.join(item_name)
     embed=market_item(item_name)
     await ctx.send(embed=embed)
+
+@bot.command(aliases=["ㄷㅂㅅ","도비스"])
+async def abyss(ctx):
+    embed=abyssofweek()
+    await ctx.send(embed=embed)  
 
 bot.run(tokens.token)
