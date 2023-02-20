@@ -7,6 +7,26 @@ import discord
 from discord.ext import commands
 import asyncio
 
+#############################################################
+from market.marketAvgPrice import *
+from gamecontents.gameContents import *
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='/', intents=intents)
+
+
+@bot.command(aliases=["경매장","시세"])
+async def market(ctx, *item_name):
+    item_name=' '.join(item_name)
+    embed=market_item(item_name)
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=["ㄷㅂㅅ","도비스"])
+async def abyss(ctx):
+    embed=abyssofweek()
+    await ctx.send(embed=embed)  
+#############################################################
+
 
 class MyBot(commands.Bot):
     def __init__(self):
