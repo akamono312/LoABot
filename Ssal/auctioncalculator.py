@@ -7,6 +7,8 @@ import requests
 import json
 from urllib import parse
 import math
+import datetime
+import pytz
 
 apiurl = "https://developer-lostark.game.onstove.com/"
 key = tokens.apikey
@@ -32,7 +34,7 @@ def auctioncalc(common_price: int):
         fair.append(math.floor(price[i]/1.1))
 
     
-    embed = discord.Embed(title=":scales: 경매 입찰 적정가 계산기", description=f"[:coin:`{common_price}`]")
+    embed = discord.Embed(title=":scales: 경매 입찰 적정가 계산기", description=f"[:coin:`{common_price}`]", timestamp=datetime.datetime.now(pytz.timezone('UTC')))
     embed.add_field(name="손익분기점", value=f"4인: [:coin:`{price[0]}`]\n8인: [:coin:`{price[1]}`]", inline=False)
     embed.add_field(name="적정입찰가", value=f"4인: [:coin:`{fair[0]}`]\n8인: [:coin:`{fair[1]}`]", inline=False)
     embed.add_field(name="분배금", value=f"4인: [:coin:`{math.floor(fair[0] * 1/3)}`]\n8인: [:coin:`{math.floor(fair[1] * 1/7)}`]", inline=False)
@@ -74,7 +76,7 @@ def legendaryMap():
     honor_message = message_format(honor_price, overall_honor_price)
     gem_message = message_format(gem_price, overall_gem_price)
 
-    embed=discord.Embed(title=":moneybag: 전설지도 입찰 적정가 계산기", description=price_message)
+    embed=discord.Embed(title=":moneybag: 전설지도 입찰 적정가 계산기", description=price_message, timestamp=datetime.datetime.now(pytz.timezone('UTC')))
     embed.add_field(name="명예의 파편 주머니(대)", value=honor_message, inline=False)
     embed.add_field(name="3티어 1레벨 보석", value=gem_message, inline=False)
     # print(price_message)
@@ -200,7 +202,3 @@ def get_honor_price():
     except Exception as e:
         print(e)
         return -1
-
-
-if __name__ == '__main__':
-    legendaryMap()
