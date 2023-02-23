@@ -23,15 +23,15 @@ def market_item(item_name : str):
 
         for i in response:
             if (i.get("TradeRemainCount")==0) or (i.get("TradeRemainCount")==None):
-                embed=discord.Embed(title="**:gem: "+selected_item+"의 시세**",timestamp=datetime.datetime.now(pytz.timezone('UTC')), color=0x00ff00)
+                embed=discord.Embed(title=f'**:gem: {selected_item}의 시세** ' ,timestamp=datetime.datetime.now(pytz.timezone('UTC')), color=0x00ff00)
                 if i.get("Stats")[0].get("TradeCount")==0:
                     embed.add_field(name=":moneybag: 금일 평균가 : :x: 거래량이 없습니다.",value='\n', inline=False)
                 else:    
-                    embed.add_field(name=":moneybag: 금일 평균가 : "+str(i.get("Stats")[0].get("AvgPrice")),value='\n', inline=False)
+                    embed.add_field(name=f':moneybag: 금일 평균가 : {i.get("Stats")[0].get("AvgPrice")}' ,value='\n', inline=False)
                 if i.get("Stats")[1].get("TradeCount")==0:
-                    embed.add_field(name=":moneybag: 금일 평균가 : :x: 거래량이 없습니다.",value='\n', inline=False)
+                    embed.add_field(name=":moneybag: 전일 평균가 : :x: 거래량이 없습니다.",value='\n', inline=False)
                 else:
-                    embed.add_field(name=":moneybag: 전일 평균가 : "+str(i.get("Stats")[1].get("AvgPrice")), value='\n',inline=False)
+                    embed.add_field(name=f':moneybag: 전일 평균가 : {i.get("Stats")[1].get("AvgPrice")}', value='\n',inline=False)
                 embed.set_footer(text="Made by.ㅈㅇㅈ#0081")
                 return embed
     except Exception as e:
