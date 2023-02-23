@@ -15,12 +15,12 @@ def abyssofweek():
     headers={'accept': 'application/json', 'authorization': 'bearer '+key,'Content-Type':'application/json'}
     try:
         response=requests.get(url,headers=headers).json()
-        dungenlist=[]
-        for dungen in response: 
-            dungenlist.append(dungen.get("Name"))
+        dungeonlist=[]
+        for dungeon in response: 
+            dungeonlist.append(dungeon.get("Name"))
         embed=discord.Embed(title="**:calendar_spiral: 금주의 도전 어비스 던전**",timestamp=datetime.datetime.now(pytz.timezone('UTC')),color=0x00ff00)
-        embed.add_field(name=":video_game:"+str(dungenlist[0]),value="\n",inline="False")
-        embed.add_field(name=":video_game:"+str(dungenlist[1]),value="\n",inline="False")
+        embed.add_field(name=f':video_game: {str(dungeonlist[0])}',value="\n",inline="False")
+        embed.add_field(name=f':video_game: {str(dungeonlist[1])}',value="\n",inline="False")
         embed.set_footer(text="Made by.ㅈㅇㅈ#0081")
         return embed
     except Exception as e:
