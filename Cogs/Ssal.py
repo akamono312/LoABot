@@ -45,7 +45,7 @@ class Ssal(commands.Cog):
         view = View()
         view.add_item(voldaik)
         view.add_item(bern)
-        await interaction.response.send_message("버튼을 선택해주세요.", view=view)
+        await interaction.response.send_message("지역을 선택해주세요. 이 메시지는 5초 후 삭제됩니다.", view=view, delete_after=5)
 
 
     '''
@@ -275,4 +275,5 @@ class Ssal(commands.Cog):
             return -1
 
 async def setup(bot) -> None:
+    # await bot.add_cog(Ssal(bot), guilds=[discord.Object(id=tokens.guild_id)])
     await bot.add_cog(Ssal(bot))
