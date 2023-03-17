@@ -212,7 +212,7 @@ class Ssal(commands.Cog):
             "SortCondition": "ASC"
         }
         try:
-            response = requests.post(url, json=data, headers=headers).json()
+            response = requests.post(url, json=data, headers=headers, verify=False).json()
             # print(response.text)
             # with open("result.json", 'w', encoding='utf-8') as f:
             #     json.dump(response.json(), f, ensure_ascii=False, indent='\t')
@@ -249,7 +249,7 @@ class Ssal(commands.Cog):
         headers = {'accept': 'application/json', 'authorization': 'bearer ' + key, 'Content-Type': 'application/json'}
 
         try:
-            response = requests.post(url, json=data, headers=headers).json()
+            response = requests.post(url, json=data, headers=headers, verify=False).json()
             # print(response)
             solar = {}
             for item in response['Items']:
@@ -278,7 +278,7 @@ class Ssal(commands.Cog):
         headers = {'accept': 'application/json', 'authorization': 'bearer ' + key, 'Content-Type': 'application/json'}
 
         try:
-            response = requests.post(url, json=data, headers=headers).json()
+            response = requests.post(url, json=data, headers=headers, verify=False).json()
             # print(response)
             return response['Items'][0]['CurrentMinPrice']
 
