@@ -287,7 +287,7 @@ class Ssal(commands.Cog):
             return -1
 
     def error_message(self):
-        embed=discord.Embed(title=":warning: 오류", description="현재 서버에서는 사용할 수 없는 기능입니다.", color=0xff0000, timestamp=datetime.datetime.now(pytz.timezone('UTC')))
+        embed=discord.Embed(title=":warning: 오류", description="현재 사용할 수 없는 기능입니다.", color=0xff0000, timestamp=datetime.datetime.now(pytz.timezone('UTC')))
         embed.set_footer(text="Made by 우사니#3136")
         return embed
 
