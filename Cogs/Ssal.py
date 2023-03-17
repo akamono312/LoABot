@@ -86,19 +86,24 @@ class Ssal(commands.Cog):
         3티어 1레벨 보석 48개
         '''
         self.gem_price = self.get_gem_price()
-        self.overall_gem_price = self.gem_price * 48
-
         self.solar_price = self.get_solar_price()
+        self.honor_price = self.get_honor_price()
+        
+
+        ''' 함수 호출 후 예외상황 발생시 error_message 호출 '''
+        if self.solar_price == -1 or self.gem_price == -1 or self.honor_price == -1:
+            return self.error_message()
+
+        ''' 은축가, 명파주머니, 보석 가격 계산 '''
         self.overall_solar_price = {}
         j = 12
         for i in self.solar_price:
             self.overall_solar_price[i] = self.solar_price[i] * j
             j -= 4
         self.overall_solar_price['태양의 은총'] += self.solar_price['태양의 은총'] * 4
-
-        self.honor_price = self.get_honor_price()
+        self.overall_gem_price = self.gem_price * 48
         self.overall_honor_price = self.honor_price * 8
-        
+           
         # print(self.overall_gem_price, self.overall_solar_price, self.overall_honor_price)
 
         self.price = 0
@@ -117,17 +122,22 @@ class Ssal(commands.Cog):
         명파주머니(대) 8개 honor shard pouch
         3티어 1레벨 보석 40개
         '''
+        
         self.gem_price = self.get_gem_price()
-        self.overall_gem_price = self.gem_price * 40
-
         self.solar_price = self.get_solar_price()
+        self.honor_price = self.get_honor_price()
+        
+        ''' 함수 호출 후 예외상황 발생시 error_message 호출 '''
+        if self.solar_price == -1 or self.gem_price == -1 or self.honor_price == -1:
+            return self.error_message()
+
+        ''' 은축가, 명파주머니, 보석 가격 계산 '''
         self.overall_solar_price = {}
         j = 12
         for i in self.solar_price:
             self.overall_solar_price[i] = self.solar_price[i] * j
             j -= 4
-
-        self.honor_price = self.get_honor_price()
+        self.overall_gem_price = self.gem_price * 40
         self.overall_honor_price = self.honor_price * 8
         
         # print(self.overall_gem_price, self.overall_solar_price, self.overall_honor_price)
@@ -144,6 +154,8 @@ class Ssal(commands.Cog):
 
     def makeEmbed(self, name: str):
         self.price_message = self.price_format()
+        if name == '볼다이크':
+            self.price_message += '\n\n**※ 볼다이크에서는 태양의 축복과 명파주머니(대)가 8개~12개 랜덤드랍하고 본 결과는 최소기준으로 계산되었습니다.**'
         self.honor_message = self.message_format(self.honor_price, self.overall_honor_price)
         self.gem_message = self.message_format(self.gem_price, self.overall_gem_price)
 
@@ -273,6 +285,11 @@ class Ssal(commands.Cog):
         except Exception as e:
             print(e)
             return -1
+
+    def error_message(self):
+        embed=discord.Embed(title=":warning: 오류", description="현재 서버에서는 사용할 수 없는 기능입니다.", color=0xff0000, timestamp=datetime.datetime.now(pytz.timezone('UTC')))
+        embed.set_footer(text="Made by 우사니#3136")
+        return embed
 
 async def setup(bot) -> None:
     # await bot.add_cog(Ssal(bot), guilds=[discord.Object(id=tokens.guild_id)])
