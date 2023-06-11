@@ -26,7 +26,7 @@ class GameContents(commands.Cog):
         url=apiurl
         headers={'accept': 'application/json', 'authorization': 'bearer ' + key,'Content-Type':'application/json'}
         try:
-            response=requests.get(url,headers=headers).json()
+            response=requests.get(url,headers=headers,verify=False).json()
             dungeonlist=[]
             for dungeon in response: 
                 dungeonlist.append(dungeon.get("Name"))
